@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="eventos-container">
+    <h1>Próximos Eventos</h1>
+    
+    <div class="eventos-grid">
+        {% for evento in eventos %}
+        <div class="evento-card">
+            <div class="evento-imagen">
+                {% if evento.imagen %}
+                <img src="{{ evento.imagen.url }}" alt="{{ evento.nombre }}">
+                {% else %}
+                <div class="evento-sin-imagen"></div>
+                {% endif %}
+                <div class="evento-fecha">
+                    <span class="dia">{{ evento.fecha_inicio|date:"d" }}</span>
+                    <span class="mes">{{ evento.fecha_inicio|date:"M"|upper }}</span>
+                </div>
+            </div>
+            
+            <div class="evento-contenido">
+                <div class="evento-cabecera">
+                    <h2 class="evento-titulo">{{ evento.nombre }}</h2>
+                    <div class="evento-hora">
+                        <i class="far fa-clock"></i>
+                        {{ evento.fecha_inicio|time:"H:i" }} - {{ evento.fecha_fin|time:"H:i" }}
+                    </div>
+                </div>
+                
+                {% if evento.descripcion %}
+                <p class="evento-descripcion">
+                    {{ evento.descripcion|truncatewords:20 }}
+                </p>
+                {% endif %}
+                
+                <div class="evento-precios">
+                    {% if not evento.precio_anticipado and not evento.precio_taquilla %}
+                    <span class="precio">Evento gratuito</span>
+                    {% endif %}
+                    {% if evento.precio_anticipado %}
+                    <span class="precio">Anticipada: {{ evento.precio_anticipado }}€</span>
+                    {% endif %}
+                    {% if evento.precio_taquilla %}
+                    <span class="precio">Taquilla: {{ evento.precio_taquilla }}€</span>
+                    {% endif %}
+                </div>
+                
+                <div class="evento-acciones">
+                    <button class="btn-mas-info">Más información</button>
+                    {% if evento.link_entradas %}
+                    <a href="{{ evento.link_entradas }}" class="btn-comprar" target="_blank">
+                        Comprar entradas
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="no-eventos">No hay eventos programados por el momento.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

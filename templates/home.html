@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero">
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video">
+            <source src="{% static 'video/background-video.mp4' %}" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+    <div class="logo-container">
+        <img src="{% static 'img/Cibeles.svg' %}" alt="Cibeles Logo">
+    </div>
+</section>
+<section>
+<h1>
+    Los próximos 7 días:
+</h1>
+    <!-- TODO eventos de los próximos 7 días -->
+</section>
+{% endblock %}

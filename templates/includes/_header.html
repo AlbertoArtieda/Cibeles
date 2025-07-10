@@ -1,0 +1,14 @@
+{% load static %}
+
+<header class="site-header">
+    <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Cibeles Logo" class="logo"></a>
+    <!-- <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button> -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="{% url 'agenda' %}">Agenda</a></li>
+            <li><a href="#">La sala</a></li>
+            <li><a href="#">Clubbing</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+</header>

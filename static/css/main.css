@@ -1,0 +1,60 @@
+/* Componentes base */
+@import 'base/_header.css';
+@import 'base/_footer.css';
+@import 'components/_buttons.css';
+@import 'components/_cards.css';
+
+/* Pages */
+@import 'pages/_home.css';
+@import 'pages/_agenda.css';
+
+/* 1. Fuentes */
+@font-face {
+    font-family: 'Chulapa-regular';
+    src: url('../../static/fonts/Chulapa-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Chulapa-light';
+    src: url('../../static/fonts/Chulapa-Light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Chulapa-bold';
+    src: url('../../static/fonts/Chulapa-Bold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 2. Variables CSS */
+:root {
+    /* FONTS */
+    --font-family-regular: 'Chulapa-regular', sans-serif;
+    --font-family-light: 'Chulapa-light', sans-serif;
+    --font-family-bold: 'Chulapa-bold', sans-serif;
+
+    /* COLORS */
+    --color-primary: #182A6C;
+    --color-white: #F8F8F8;
+    --color-black: #292929;
+}
+
+/* 3. Estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-regular);
+    line-height: 1.6; 
+    background-image: url('../img/background.png');
+}
