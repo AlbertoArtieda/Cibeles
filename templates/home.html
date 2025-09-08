@@ -3,21 +3,68 @@
 
 {% block content %}
 <section class="hero">
-    <div class="video-background">
-        <video autoplay muted loop id="bg-video">
-            <source src="{% static 'video/background-video.mp4' %}" type="video/mp4">
-            Tu navegador no soporta el elemento de video.
-        </video>
-        <div class="video-overlay"></div>
+    <div class="img-background">
+        <img src="{% static 'img/fondo-azulejos.png' %}" alt="" class="desktop-bg">
+        <img src="{% static 'img/fondo-azulejos-móvil.png' %}" alt="" class="mobile-bg">
     </div>
     <div class="logo-container">
         <img src="{% static 'img/Cibeles.svg' %}" alt="Cibeles Logo">
     </div>
+    
 </section>
-<section>
-<h1>
-    Los próximos 7 días:
-</h1>
-    <!-- TODO eventos de los próximos 7 días -->
+<section class="home-container">
+    <h1>Próximos eventos:</h1>
+    
+    <div class="home-grid">
+        {% for evento in eventos %}
+        <div class="home-evento-card">
+            <div class="home-evento-imagen">
+                {% if evento.imagen %}
+                <img src="{{ evento.imagen.url }}" alt="{{ evento.nombre }}">
+                {% else %}
+                <div class="home-evento-sin-imagen"></div>
+                {% endif %}
+                <div class="home-evento-fecha">
+                    <span class="dia">{{ evento.fecha_inicio|date:"d" }}</span>
+                    <span class="mes">{{ evento.fecha_inicio|date:"M"|upper }}</span>
+                </div>
+            </div>
+            
+            <div class="home-evento-contenido">
+                <div class="home-evento-cabecera">
+                    <h2 class="home-evento-titulo">{{ evento.nombre }}</h2>
+                    <div class="home-evento-hora">
+                        <i class="far fa-clock"></i>
+                        {{ evento.fecha_inicio|time:"H:i" }} - {{ evento.fecha_fin|time:"H:i" }}
+                    </div>
+                </div>
+                
+                <div class="home-evento-precios">
+                    {% if not evento.precio_anticipado and not evento.precio_taquilla %}
+                    <span class="precio">Evento gratuito</span>
+                    {% endif %}
+                    {% if evento.precio_anticipado %}
+                    <span class="precio">Anticipada: {{ evento.precio_anticipado }}€</span>
+                    {% endif %}
+                    {% if evento.precio_taquilla %}
+                    <span class="precio">Taquilla: {{ evento.precio_taquilla }}€</span>
+                    {% endif %}
+                </div>
+                
+                <div class="home-evento-acciones">
+                    <button class="home-btn-mas-info">Más información</button>
+                    {% if evento.link_entradas %}
+                    <a href="{{ evento.link_entradas }}" class="home-btn-comprar" target="_blank">
+                        Comprar entradas
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="home-no-eventos">No hay eventos programados por el momento.</p>
+        {% endfor %}
+    </div>
+    <a href="{% url 'agenda' %}" class="home-btn-agenda">Agenda completa</a>
 </section>
 {% endblock %}

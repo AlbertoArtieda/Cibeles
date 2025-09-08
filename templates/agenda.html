@@ -62,4 +62,9 @@
         {% endfor %}
     </div>
 </section>
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'js/agenda-filters.js' %}"></script>
+{% endblock %}
 {% endblock %}

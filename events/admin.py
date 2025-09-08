@@ -29,7 +29,7 @@ class EventoActivoFilter(SimpleListFilter):
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     list_display = (
-        'nombre', 'categoria', 'sala', 'fecha_inicio', 'fecha_fin', 'activo', 'creado_por', 'actualizado_por'
+        'nombre', 'categoria', 'sala', 'fecha_inicio', 'fecha_fin', 'creado_por', 'actualizado_por', 'activo'
     )
     list_filter = (
         'categoria', 

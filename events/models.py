@@ -31,10 +31,10 @@ class Event(models.Model):
         help_text='Descripción detallada del evento'
     )
     fecha_inicio = models.DateTimeField(
-        help_text='Fecha y hora de inicio del evento'
+        help_text='Formato dd/mm/aaaa hh:mm'
     )
     fecha_fin = models.DateTimeField(
-        help_text='Fecha y hora de fin del evento'
+        help_text='Formato dd/mm/aaaa hh:mm'
     )
     imagen = models.ImageField(
         upload_to='eventos/imagenes/',
@@ -59,7 +59,7 @@ class Event(models.Model):
         decimal_places=2,
         null=True,
         blank=True,
-        help_text='Precio de la entrada con anticipación'
+        help_text='Precio de la entrada anticipada'
     )
     precio_taquilla = models.DecimalField(
         max_digits=10,
@@ -126,17 +126,25 @@ class Event(models.Model):
         if self.fecha_fin <= self.fecha_inicio:
             raise ValidationError('La fecha de fin debe ser posterior a la fecha de inicio')
         
-        # Validación de precios
+        # Validación de entradas y precios
         if self.precio_anticipado is not None and self.precio_taquilla is not None:
             if self.precio_anticipado < 0 or self.precio_taquilla < 0:
                 raise ValidationError('Los precios no pueden ser negativos')
+        if (self.precio_anticipado is not None or self.precio_taquilla is not None) and (self.link_entradas is None) :
+            raise ValidationError('El enlace de entradas no puede estar vacío')
+        if (self.precio_anticipado is None and self.precio_taquilla is None) and (self.link_entradas is not None) :
+            raise ValidationError('Si se proporciona un enlace de entradas, también debe proporcionarse un precio')
+        if self.link_entradas and not self.link_entradas.startswith(('http://', 'https://')):
+            raise ValidationError('El enlace de entradas debe ser una URL válida')
         
         # Validación de URLs
         if self.video and not self.video.startswith(('http://', 'https://')):
             raise ValidationError('La URL del video debe ser una URL válida')
+
+        # Validación de activo
+        if self.fecha_fin < timezone.now():
+            self.activo = False
         
-        if self.link_entradas and not self.link_entradas.startswith(('http://', 'https://')):
-            raise ValidationError('El enlace de entradas debe ser una URL válida')
 
     def save(self, *args, **kwargs):
         if not self.slug:

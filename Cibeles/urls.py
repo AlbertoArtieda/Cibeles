@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from events import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('administracion2025/', admin.site.urls),
     path('', views.home_view, name='home'),
     path('agenda/', views.agenda_view, name='agenda'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,8 +4,13 @@ from django.utils import timezone
 from datetime import timedelta
 
 def home_view(request):
-    return render(request, 'home.html')
+    # Filtrar los próximos 8 eventos activos
+    eventos = Event.objects.filter(activo=True).order_by('fecha_inicio')[:8]
+    
+    return render(request, 'home.html', {'eventos': eventos})
 
 def agenda_view(request):    
-    eventos = Event.objects.all().order_by('fecha_inicio')
+    # Iniciar con todos los eventos activos
+    eventos = Event.objects.filter(activo=True).order_by('fecha_inicio')
+        
     return render(request, 'agenda.html', {'eventos': eventos})

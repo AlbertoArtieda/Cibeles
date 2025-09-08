@@ -32,7 +32,10 @@
 .evento-sin-imagen {
     width: 100%;
     height: 100%;
-    background-color: var(--color-white);
+    background-image: url('../../img/logo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .evento-imagen img {
@@ -73,6 +76,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .evento-cabecera {
@@ -182,7 +186,7 @@
 
     .evento-imagen {
         width: 350px;
-        height: 280px;
+        height: 300px;
     }
 
     .evento-descripcion {
