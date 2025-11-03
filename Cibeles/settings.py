@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -96,15 +97,23 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
+        # En local: escribe en logs/error.log
         'file': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs/error.log',
+            'filename': os.path.join(BASE_DIR, 'logs', 'error.log'),
+        },
+        # En producción (Vercel): imprime por consola
+        'console': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
+            # Usa "console" si no se puede escribir en disco
+            'handlers': ['console'] if os.environ.get('VERCEL') else ['file'],
             'level': 'ERROR',
             'propagate': True,
         },
