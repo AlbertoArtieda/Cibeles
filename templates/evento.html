@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<article class="evento {% if not evento.activo %}evento--inactivo{% endif %}">
+    <div class="evento__imagen">
+        <img src="{{ evento.imagen.url }}" alt="{{ evento.nombre }}">
+        {% if not evento.activo %}
+        <div class="evento__overlay">
+            <span>Evento finalizado</span>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="evento__contenido">
+        <h1 class="evento__titulo">{{ evento.nombre }}</h1>
+        <p class="evento__fecha">
+            {{ evento.fecha_inicio|date:"d/m/Y H:i" }} - {{ evento.fecha_fin|date:"H:i" }}
+        </p>
+        <p class="evento__categoria">{{ evento.get_categoria_display }}</p>
+        <p class="evento__ubicacion">{{ evento.ubicacion }}</p>
+        <p class="evento__descripcion">{{ evento.descripcion }}</p>
+
+        <div class="evento__precios">
+            {% if evento.precio_anticipado %}
+            <p>Precio anticipado: {{ evento.precio_anticipado }}€</p>
+            {% endif %}
+            {% if evento.precio_taquilla %}
+            <p>Precio en taquilla: {{ evento.precio_taquilla }}€</p>
+            {% endif %}
+        </div>
+
+        {% if evento.activo and evento.link_entradas %}
+        <a href="{{ evento.link_entradas }}" class="btn-comprar" target="_blank">
+            Comprar entradas
+        </a>
+        {% endif %}
+    </div>
+</article>
+<a href="{% url 'agenda' %}" class="home-btn-agenda">Volver a la agenda</a>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/_evento.css' %}">
+{% endblock %}

@@ -1,0 +1,50 @@
+/* CARDS BUTTON */
+.btn-mas-info,
+.btn-comprar {
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-mas-info {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.btn-mas-info:hover {
+    background: #c0c0c0;
+}
+
+.btn-comprar {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-comprar:hover {
+    background: #2A3F8C;
+}
+
+/* HOME BUTTON */
+.home-btn-agenda {
+    width: fit-content;
+    display: block;
+    margin: 1.5rem auto;
+    text-align: center;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.home-btn-agenda:hover {
+    background: #2A3F8C;
+}

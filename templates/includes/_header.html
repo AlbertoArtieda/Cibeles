@@ -2,13 +2,71 @@
 
 <header class="site-header">
     <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Cibeles Logo" class="logo"></a>
-    <!-- <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button> -->
     <nav>
         <ul class="nav-links">
             <li><a href="{% url 'agenda' %}">Agenda</a></li>
-            <li><a href="#">La sala</a></li>
-            <li><a href="#">Clubbing</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="{% url 'sala' %}">La sala</a></li>
+            <!-- <li><a href="#">Clubbing</a></li> -->
+            <li><a href="{% url 'contacto' %}">Contacto</a></li>
         </ul>
+        <div id="nav-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+        </div>
     </nav>
 </header>
+{% block extra_js %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Elementos del DOM
+        const navIcon = document.getElementById('nav-icon');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links li');
+        const body = document.body;
+        
+        // Función para alternar el menú
+        function toggleMenu() {
+            nav.classList.toggle('active');
+            navIcon.classList.toggle('open');
+            body.classList.toggle('no-scroll');
+            
+            // Animación de los enlaces del menú
+            if (nav.classList.contains('active')) {
+                navLinks.forEach((link, index) => {
+                    link.style.transitionDelay = `${0.1 * (index + 1)}s`;
+                    link.style.opacity = '1';
+                    link.style.transform = 'translateX(0)';
+                });
+            } else {
+                navLinks.forEach((link, index) => {
+                    link.style.transitionDelay = '0s';
+                    link.style.opacity = '0';
+                    link.style.transform = 'translateX(20px)';
+                });
+            }
+        }
+        
+        // Inicializa los estilos de los enlaces
+        navLinks.forEach(link => {
+            link.style.transform = 'translateX(20px)';
+            link.style.transition = 'all 0.3s ease-in-out';
+        });
+        
+        // Evento para el icono del menú
+        if (navIcon) {
+            navIcon.addEventListener('click', toggleMenu);
+        }
+        
+        // Cierra el menú al hacer clic en un enlace
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (nav.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

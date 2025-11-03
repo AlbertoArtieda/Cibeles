@@ -48,7 +48,7 @@
                 </div>
                 
                 <div class="evento-acciones">
-                    <button class="btn-mas-info">Más información</button>
+                    <a href="{% url 'evento_detalle' evento.slug %}" class="btn-mas-info">Más información</a>
                     {% if evento.link_entradas %}
                     <a href="{{ evento.link_entradas }}" class="btn-comprar" target="_blank">
                         Comprar entradas

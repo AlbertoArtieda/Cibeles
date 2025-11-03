@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import TemplateView
 from .models import Event
-from django.utils import timezone
-from datetime import timedelta
 
 def home_view(request):
     # Filtrar los próximos 8 eventos activos
@@ -14,3 +13,13 @@ def agenda_view(request):
     eventos = Event.objects.filter(activo=True).order_by('fecha_inicio')
         
     return render(request, 'agenda.html', {'eventos': eventos})
+
+def evento_detalle(request, slug):
+    evento = get_object_or_404(Event, slug=slug)
+    return render(request, 'evento.html', {'evento': evento})
+
+class SalaView(TemplateView):
+    template_name = 'sala.html'
+
+class ContactoView(TemplateView):
+    template_name = 'contacto.html'

@@ -7,6 +7,9 @@
 /* Pages */
 @import 'pages/_home.css';
 @import 'pages/_agenda.css';
+@import 'pages/_sala.css';
+@import 'pages/_contacto.css';
+@import 'pages/_evento.css';
 
 /* 1. Fuentes */
 @font-face {

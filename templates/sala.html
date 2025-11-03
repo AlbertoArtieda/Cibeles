@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="sala-container">
+    <h1>Rider Técnico – Sala Cibeles</h1>
+
+    <div class="sala-content">
+        <div class="sala-texto">
+
+            <h2>Espacio Club (Planta Baja)</h2>
+            <h3>Sistema P.A.</h3>
+            <p>La planta baja de Cibeles cuenta con un sistema Outline de 4 vías, optimizado para una cobertura precisa y una respuesta de frecuencia equilibrada en todo el espacio.</p>
+            <ul>
+                <li>Frontfill Outline – MAGA Engineering 2x2000W</li>
+                <li>Subwoofers VOID Acoustics – 35Hz / 2000W</li>
+                <li>Procesado con amplificación LAB.GRUPPEN PLM 10000Q (Lake Processing)</li>
+                <li>Delay & Sidefill – MAGA Engineering Wedge ME12WA (2x1000W)</li>
+            </ul>
+
+            <h3>FOH y Monitores</h3>
+            <ul>
+                <li>FOH: Allen & Heath dLive C1500 + Stage Box CDM48</li>
+                <li>Monitores: 3x Pioneer 12” + 1x JBL 12” activos (500W RMS)</li>
+            </ul>
+
+            <h3>Microfonía</h3>
+            <p>Set completo adaptado para directos de banda y sesiones híbridas:</p>
+            <ul>
+                <li>Microfonía Sennheiser, Shure, Audix y AKG</li>
+                <li>6 DI Klark Teknik</li>
+                <li>3 sistemas inalámbricos Sennheiser EW100</li>
+                <li>Pies de micro Sennheiser (6 altos / 4 bajos)</li>
+            </ul>
+
+            <h3>Escenario</h3>
+            <p>Medidas: <strong>4,7 m ancho x 4 m fondo x 0,6 m altura</strong> – acceso lateral a camerino.  
+            Distribución eléctrica y cableado seguro por toda la superficie.</p>
+
+            <hr>
+
+            <h2>Espacio Ático (Planta Calle)</h2>
+            <h3>Sistema P.A.</h3>
+            <ul>
+                <li>D&B Audiotechnik – Sistema 10s/8s con sub B8</li>
+                <li>Amplificación D&B 5D + procesador Symetrix Jupiter</li>
+                <li>FOH: Midas MR18 controlada por iPad</li>
+                <li>Monitor activo Wharfedale 15” 500W RMS</li>
+            </ul>
+
+            <h3>Escenario</h3>
+            <p>Medidas: <strong>2 m x 2 m x 0,2 m altura</strong> – pensado para showcases, acústicos y presentaciones.</p>
+
+            <hr>
+
+            <h2>Backline</h2>
+            <ul>
+                <li>Batería Gretsch New Classic Maple (20", 10", 12", 14")</li>
+                <li>Hardware Gibraltar completo + banqueta</li>
+                <li>Amplificadores Fender HotRod Deville y Supersonic 4x12”</li>
+                <li>Bass Amp Aguilar Tone Hammer 350W + DB410</li>
+                <li>Soportes para guitarras, bajo y teclado</li>
+            </ul>
+
+            <hr>
+
+            <h2>Equipos DJ y Live</h2>
+            <h3>Zona Club</h3>
+            <ul>
+                <li>2x Pioneer CDJ 3000 + 1x CDJ 2000NXS</li>
+                <li>Mixer Pioneer DJM-A9 / Allen & Heath Xone92</li>
+                <li>2x Technics M3D</li>
+                <li>Mixer Yamaha MG10 para directos</li>
+            </ul>
+
+            <h3>Zona Ático</h3>
+            <ul>
+                <li>2x Pioneer CDJ 2000NXS2</li>
+                <li>Mixer Pioneer DJM 900NXS2</li>
+                <li>2x Technics 1200MK2</li>
+            </ul>
+
+            <hr>
+
+            <h2>Iluminación</h2>
+            <h3>Espacio Club</h3>
+            <ul>
+                <li>8 PAR LED Stairville + 5 Cabezas Móviles MH-X20</li>
+                <li>Cameo Hydrabeam / Moonflower / Strobo / Fogger</li>
+                <li>Control DMX vía iPad – Luminair 512</li>
+            </ul>
+
+            <h3>Espacio Ático</h3>
+            <ul>
+                <li>Techo LED inteligente RGB</li>
+                <li>Control DMX Luminair 512 por iPad</li>
+            </ul>
+
+            <hr>
+
+            <h2>Vídeo</h2>
+            <ul>
+                <li>Proyector láser Panasonic 5000 lm + Matriz HDMI 8x8</li>
+                <li>Monitores LED de 43” en cabina y acceso</li>
+                <li>Cámara PTZ con retransmisión interna al Ático</li>
+                <li>Proyección secundaria mediante sistema Optoma 4000 lm</li>
+            </ul>
+
+        </div>
+
+        <div class="sala-plano">
+            <img src="{% static 'img/plano1.webp' %}" alt="Plano de la sala Cibeles" class="sala-foto">
+            <img src="{% static 'img/plano2.webp' %}" alt="Plano de la sala Cibeles" class="sala-foto">
+        </div>
+    </div>
+</section>
+{% endblock %}
