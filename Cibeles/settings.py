@@ -97,13 +97,6 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        # En local: escribe en logs/error.log
-        'file': {
-            'level': 'ERROR',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', 'error.log'),
-        },
-        # En producción (Vercel): imprime por consola
         'console': {
             'level': 'ERROR',
             'class': 'logging.StreamHandler',
@@ -112,8 +105,7 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            # Usa "console" si no se puede escribir en disco
-            'handlers': ['console'] if os.environ.get('VERCEL') else ['file'],
+            'handlers': ['console'],
             'level': 'ERROR',
             'propagate': True,
         },
