@@ -43,8 +43,5 @@ venv/
 *.swp
 *.swo
 
-# Media files
-media/
-
 # Static files
 staticfiles/
